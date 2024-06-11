@@ -14,22 +14,24 @@
 		<title>Edit</title>
 	</head>
 	<body>
-		<% include('partials/header.ejs') %>
+		<% include('partials/header.ejs')%>
 		<div class="outerbox">
 			<div class="formbox">
 				<h1>Edit Your Post</h1>
 				<div class="innerbox">
-					<form action="/update/<%= postId %>" method="POST">
+					<%for(item of posts){%>
+					<form action="/update" method="POST">
+						<input type="hidden" name="ItemId" value="<%= item.id %>" />
 						<label for="title">Title</label><br />
 						<input
 							type="text"
 							id="title"
 							name="title"
-							value="<%= post.title %>"
+							value="<%=item.title%>"
 						/><br />
 						<label for="content">Content:</label><br />
 						<textarea id="content" name="content" rows="6" cols="25">
-<%= post.content %></textarea
+<%= item.content %></textarea
 						><br />
 
 						<label for="author">Author</label><br />
@@ -37,9 +39,10 @@
 							type="text"
 							id="author"
 							name="auth"
-							value="<%= post.author %>"
+							value="<%= item.author %>"
 						/><br />
 						<button type="submit" id="btn">Update</button>
+						<%}%>
 					</form>
 				</div>
 			</div>

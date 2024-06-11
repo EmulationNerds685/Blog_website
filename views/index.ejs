@@ -16,7 +16,7 @@
 			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 			rel="stylesheet"
 		/>
-		<title>Homepage</title>
+		<title>Blog</title>
 	</head>
 	<body>
 		<%-include('partials/header.ejs')%>
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 		</div>
-		<% posts.forEach((post, index) => { %>
+		<% for(let item of posts) { %>
 
 		<div
 			class="card"
@@ -63,23 +63,21 @@
 			"
 		>
 			<div class="card-body">
-				<h1><%= post.title %></h1>
-				<p><%= post.content %></p>
-				<h4>By - <%= post.author %></h4>
+				<h1><%= item.title %></h1>
+				<p><%= item.content %></p>
+				<h4>By - <%= item.author %></h4>
 
-				<form action="/edit/<%= index %>" method="GET" style="display: inline">
+				<form action="/edit" method="post" style="display: inline">
+					<input type="hidden" name="ItemId" value="<%= item.id %>" />
 					<button class="btn btn-primary" type="submit">Edit</button>
 				</form>
-				<form
-					action="/delete/<%= index %>"
-					method="POST"
-					style="display: inline"
-				>
+				<form action="/delete" method="POST" style="display: inline">
+					<input type="hidden" name="deletedItemId" value="<%= item.id %>" />
 					<button class="btn btn-primary" type="submit">Delete</button>
 				</form>
 			</div>
 		</div>
 
-		<% }) %>
+		<% } %>
 	</body>
 </html>
