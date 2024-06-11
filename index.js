@@ -43,13 +43,10 @@ app.post('/create', async (req, res) => {
 		console.log('Error inserting!')
 	}
 })
-
 app.post('/edit', async (req, res) => {
-	//	console.log(req.body.ItemId)
 	try {
 		const id = req.body.ItemId
 		const result = await db.query('SELECT * FROM posts WHERE id= $1', [id])
-
 		res.render('edit_post.ejs', { posts: result.rows })
 	} catch (err) {
 		console.log('Error')
