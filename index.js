@@ -3,7 +3,7 @@ import bodyParser from 'body-parser'
 import pg from 'pg'
 const app = express()
 const port = 4000
-const posts = []
+
 const db = new pg.Client({
 	user: 'postgres',
 	host: 'localhost',
@@ -83,5 +83,5 @@ app.get('/home', (req, res) => {
 	res.redirect('/')
 })
 app.listen(port, () => {
-	console.log(`Server is running on port: ${port} `)
+	console.log(`Server is running on port: http://localhost:${port} `)
 })

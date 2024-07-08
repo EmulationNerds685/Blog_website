@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/styles/edit.css" />
+		<link rel="stylesheet" href="/styles/create.css" />
 		<link rel="stylesheet" href="/styles/header.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,38 +14,26 @@
 		<title>Edit</title>
 	</head>
 	<body>
-		<% include('partials/header.ejs')%>
-		<div class="outerbox">
-			<div class="formbox">
-				<h1>Edit Your Post</h1>
-				<div class="innerbox">
-					<%for(item of posts){%>
-					<form action="/update" method="POST">
-						<input type="hidden" name="ItemId" value="<%= item.id %>" />
-						<label for="title">Title</label><br />
-						<input
-							type="text"
-							id="title"
-							name="title"
-							value="<%=item.title%>"
-						/><br />
-						<label for="content">Content:</label><br />
-						<textarea id="content" name="content" rows="6" cols="25">
-<%= item.content %></textarea
-						><br />
-
-						<label for="author">Author</label><br />
-						<input
-							type="text"
-							id="author"
-							name="auth"
-							value="<%= item.author %>"
-						/><br />
-						<button type="submit" id="btn">Update</button>
-						<%}%>
-					</form>
-				</div>
+				<%-include('partials/header.ejs')%>
+  <div class="outerbox">
+		<div class="formbox">
+			<h1>Edit Post</h1>
+			<hr>
+			<div class="innerbox">
+			<form action="/update" method="POST">
+				<%for(item of posts){%>
+				<input type="hidden" id="bookid" name="ItemId"value='<%=item.id%>'/>
+				<label for="title">Title</label><br />
+				<input type="text" id="title" name="title"value='<%=item.title%>'/><br />
+				<label for="content">Content:</label><br />
+				<textarea id="content" name="content" rows="8" cols="70"><%=item.content%></textarea><br />
+				<label for="title">Author</label><br />
+				<input type="text" id="name" name="auth"value="<%=item.author%>"/><br />
+				<button type="submit" id="btn">update</button>
 			</div>
+			<%}%>
+			</form>
 		</div>
+</div>
 	</body>
 </html>

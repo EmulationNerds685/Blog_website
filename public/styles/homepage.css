@@ -1,18 +1,21 @@
-.content {
-	width: 500px;
-	color: #94a885;
+.hero {
+	width: 100%;
+}
+.posts {
+	display: flex;
+	flex-wrap: wrap;
+}
+.container {
+	color: #405332;
 	margin: 2rem;
-	margin-top: 8rem;
+	margin-top: 4rem;
+	text-align: center;
 }
 
 .h1 {
 	font-family: 'Pacifico', cursive;
 	font-weight: 400;
 	font-style: normal;
-}
-.button_container {
-	display: flex;
-	flex-direction: column;
 }
 
 @media (max-width: 600px) {
