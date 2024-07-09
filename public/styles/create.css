@@ -1,43 +1,29 @@
-.outerbox {
-	height: 90vh;
+.box1 {
+	height: 91vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.formbox {
-	color: #5b5b5b;
-	font-family: 'Kanit', sans-serif;
-	font-weight: 300;
-	text-align: center;
-	font-size: 15px;
-	border-radius: 20px;
-	background: rgba(255, 255, 255, 0.6);
-	width: 50%;
-	height: 500px;
-}
-.innerbox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-}
-
-input {
-	height: 30px;
-	border: 2px solid black;
-	border-radius: 15px;
-}
-#btn {
-	border: 2px solid black;
-	border-radius: 15px;
-	width: 80px;
-	margin-top: 20px;
-}
-.innerbox label {
-	font-family: 'Bebas Neue';
 }
 #content {
-	border: 2px solid black;
-	padding: 15px;
-	border-radius: 15px;
+	height: 60vh;
+	width: 95%;
+	border-radius: 12px;
+	padding: 10px;
+	/*margin-left: 25px;*/
+}
+#name {
+	border-radius: 12px;
+	margin-bottom: 5px;
+}
+#title {
+	border-radius: 10px;
+}
+.box2 {
+	text-align: center;
+	width: 100%;
+	font-weight: 300;
+	padding: 10px;
+	height: 88vh;
+	color: #5b5b5b;
+	font-family: 'Kanit', sans-serif;
 }

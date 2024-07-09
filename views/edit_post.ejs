@@ -15,12 +15,9 @@
 	</head>
 	<body>
 				<%-include('partials/header.ejs')%>
-  <div class="outerbox">
-		<div class="formbox">
-			<h1>Edit Post</h1>
-			<hr>
-			<div class="innerbox">
-			<form action="/update" method="POST">
+				<div class="box1">
+			<div class="box2">
+					<form action="/update" method="POST">
 				<%for(item of posts){%>
 				<input type="hidden" id="bookid" name="ItemId"value='<%=item.id%>'/>
 				<label for="title">Title</label><br />
@@ -33,7 +30,8 @@
 			</div>
 			<%}%>
 			</form>
+			</div>
 		</div>
-</div>
+
 	</body>
 </html>
