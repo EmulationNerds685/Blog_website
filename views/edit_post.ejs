@@ -21,11 +21,11 @@
 				<%for(item of posts){%>
 				<input type="hidden" id="bookid" name="ItemId"value='<%=item.id%>'/>
 				<label for="title">Title</label><br />
-				<input type="text" id="title" name="title"value='<%=item.title%>'/><br />
+				<input type="text" id="title" name="title"value='<%=item.title%>' required/><br />
 				<label for="content">Content:</label><br />
-				<textarea id="content" name="content" rows="8" cols="70"><%=item.content%></textarea><br />
+				<textarea id="content" name="content" rows="8" cols="70" required><%=item.content%></textarea><br />
 				<label for="title">Author</label><br />
-				<input type="text" id="name" name="auth"value="<%=item.author%>"/><br />
+				<input type="text" id="name" name="auth"value="<%=item.author%>" required/><br />
 				<button type="submit" id="btn">update</button>
 			</div>
 			<%}%>

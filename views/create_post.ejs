@@ -18,11 +18,11 @@
 			<div class="box2">
 				<form action="/create" method="POST">
 					<label for="title">Title</label><br />
-					<input type="text" id="title" name="title" /><br />
+					<input type="text" id="title" name="title" required/><br />
 					<label for="content">Content:</label><br />
-					<textarea id="content" name="content"></textarea><br />
+					<textarea id="content" name="content" required></textarea><br />
 					<label for="title">Written by-</label><br />
-					<input type="text" id="name" name="auth" /><br />
+					<input type="text" id="name" name="auth" required/><br />
 					<button type="submit" class="btn btn-success">Post</button>
 				</form>
 			</div>
