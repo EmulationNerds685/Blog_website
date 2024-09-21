@@ -4,6 +4,16 @@ import pg from 'pg'
 const app = express()
 const port = 4000
 
+function current_date(){
+	const today = new Date();
+const day = String(today.getDate()).padStart(2, '0');
+const month = String(today.getMonth() + 1).padStart(2, '0'); 
+const year = today.getFullYear(); 
+const formattedDate = `${day}/${month}/${year}`;
+
+return formattedDate
+}
+
 const db = new pg.Client({
 	user: 'postgres',
 	host: 'localhost',
@@ -33,9 +43,10 @@ app.post('/create', async (req, res) => {
 		const title = req.body.title
 		const content = req.body.content
 		const author = req.body.auth
+		const today_date=current_date()
 		const result = await db.query(
-			'INSERT INTO posts(title,content,author) VALUES($1,$2,$3)',
-			[title, content, author]
+			'INSERT INTO posts(title,content,author,date) VALUES($1,$2,$3,$4)',
+			[title, content, author,today_date]
 		)
 		console.log('Post Created!')
 		res.redirect('/')
