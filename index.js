@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', async (req, res) => {
 	try {
 		const result = await db.query('SELECT * FROM posts')
+		
 		res.render('index.ejs', { posts: result.rows })
 	} catch (err) {
 		console.log('Error displaying')
@@ -50,6 +51,7 @@ app.post('/create', async (req, res) => {
 		)
 		console.log('Post Created!')
 		res.redirect('/')
+		console.log(content.length)
 	} catch (err) {
 		console.log('Error inserting!')
 	}

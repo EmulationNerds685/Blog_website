@@ -4,6 +4,9 @@
 .posts {
 	display: flex;
 	flex-wrap: wrap;
+	
+    align-items: flex-start;
+    gap: 20px;
 }
 .container {
 	color: #405332;
@@ -11,7 +14,13 @@
 	margin-top: 4rem;
 	text-align: center;
 }
-
+.middle.expanded .card-body{
+	max-height: none;
+}
+.card-body{
+	max-height: 200px; /* Initial height */
+    overflow: hidden;
+}
 .h1 {
 	font-family: 'Pacifico', cursive;
 	font-weight: 400;
