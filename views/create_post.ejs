@@ -14,6 +14,23 @@
 	</head>
 	<body>
 		<%-include('partials/header.ejs')%>
+		<%if(locals.posts){%>
+			<div class="box1">
+				<div class="box2">
+					<form action="/changes" method="POST">
+						<label for="title">Title</label><br />
+						<input type="text" id="title" name="title" required value="<%=posts.title%>"><br/>
+						<label for="content">Content:</label><br />
+						<textarea id="content" name="content" required ><%=posts.content%></textarea><br/>
+						<label for="title">Written by-</label><br />
+						<input type="text" id="name" name="auth" required value="<%=posts.author%>"><br/>
+						<input type="hidden" name="ItemId" value=<%=posts.id%>>
+						<button type="submit" class="btn btn-success">Save changes</button>
+					</form>
+				</div>
+			</div>
+		
+		<%}else{%>
 		<div class="box1">
 			<div class="box2">
 				<form action="/create" method="POST">
@@ -27,6 +44,6 @@
 				</form>
 			</div>
 		</div>
-		
+		<%}%>
 	</body>
 </html>

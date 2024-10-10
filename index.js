@@ -35,8 +35,14 @@ app.get('/', async (req, res) => {
 	}
 })
 
-app.post('/submit', (req, res) => {
-	res.render('create_post.ejs')
+app.get('/create', (req, res) => {
+	if(temp.length==0){
+		res.render('create_post.ejs')	
+		
+	}else{
+	res.render('create_post.ejs',{posts:temp})}
+	console.log(temp.title)
+	temp=[]
 })
 
 app.post('/create', async (req, res) => {
@@ -56,17 +62,20 @@ app.post('/create', async (req, res) => {
 		console.log('Error inserting!')
 	}
 })
+var temp=[]
 app.post('/edit', async (req, res) => {
 	try {
 		const id = req.body.ItemId
 		const result = await db.query('SELECT * FROM posts WHERE id= $1', [id])
-		res.render('edit_post.ejs', { posts: result.rows })
+		temp=result.rows[0]
+		res.redirect('/create')
+		
 	} catch (err) {
 		console.log('Error')
 	}
 })
 
-app.post('/update', async (req, res) => {
+app.post('/changes', async (req, res) => {
 	try {
 		const id = req.body.ItemId
 		const title = req.body.title
@@ -76,6 +85,7 @@ app.post('/update', async (req, res) => {
 			'UPDATE posts SET title=$1,content=$2,author=$3 WHERE id=$4',
 			[title, content, author, id]
 		)
+		console.log("Changes applied")
 		res.redirect('/')
 	} catch (err) {
 		console.log('Error Updating!')

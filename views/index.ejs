@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="styles/homepage.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Blog</title>
-	</head>
-	<body>
-		<%-include('partials/header.ejs')%>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="styles/homepage.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet" />
+	<title>Blog</title>
+</head>
+
+<body>
+	<%-include('partials/header.ejs')%>
 
 		<div class="hero">
-			<div class="container" style="width: 50%">
+			<div class="container">
 				<h1 class="h1">IdeaShare</h1>
 				<p>
 					Welcome to IdeaShare, your go-to platform for sharing thoughts, ideas,
@@ -35,74 +33,71 @@
 					every voice matters. Join us today and start sharing your ideas,
 					because your words have the power to make a difference!
 				</p>
-				<form action="/submit" method="POST">
-					<button type="submit" class="btn btn-outline-success">Create</button>
-				</form>
+
+				<a href="/create" style="text-decoration:none"><button type="submit"
+						class="btn btn-outline-success">Create</button></a>
+
 			</div>
 		</div>
-		<div class="posts">
-			<% for(let item of posts) { %>
+		<hr />
+		<%if(locals.posts){%>
+			<h2>Posts</h2>
+			<div class="posts">
 
-			<div
-				class="card"
-				style="
-					font-family: 'Kanit', sans-serif;
-					font-weight: 300;
-					text-align: center;
-					border-radius: 10px;
-					background: rgba(255, 255, 255, 0.2);
-					width: 30%;
-					margin: 10px;
-				"
-			><div class="middle">
-				<div class="card-body" >
-					
-					<h1><%= item.title %></h1>
-					<p><%= item.content %></p>
-					<p>Created on: <%=item.date%></p>
-					<h4>By - <%= item.author %></h4>
-					
-				</div>	
-				<%if((item.content).length>250){%>
-				<button class="view-more-btn btn btn-info">View More</button>
-				<%}%>
+				<%posts.forEach(item=> { %>
+					<div class="card" style="background: rgba(255, 255, 255, 0.2);">
+						<div class="middle">
+							<div class="card-body">
+								<h1>
+									<%= item.title %>
+								</h1>
+								<p>
+									<%= item.content %>
+								</p>
+								<p>Created on: <%=item.date%>
+								</p>
+								<h4>By - <%= item.author %>
+								</h4>
+							</div>
+							<%if((item.content).length>250){%>
+								<button class="view-more-btn btn btn-info">View More</button>
+								<%}%>
 
-				<form action="/edit" method="post" style="display: inline">
-					<input type="hidden" name="ItemId" value="<%= item.id %>" />
-					<button class="btn btn-primary" type="submit">Edit</button>
-				</form>
-				<form action="/delete" method="POST" style="display: inline">
-					<input type="hidden" name="deletedItemId" value="<%= item.id %>" />
-					<button class="btn btn-primary" type="submit">Delete</button>
-				</form>
+									<form action="/edit" method="post" style="display: inline">
+										<input type="hidden" name="ItemId" value="<%= item.id %>" />
+										<button class="btn btn-primary" type="submit">Edit</button>
+									</form>
+									<form action="/delete" method="POST" style="display: inline">
+										<input type="hidden" name="deletedItemId" value="<%= item.id %>" />
+										<button class="btn btn-primary" type="submit">Delete</button>
+									</form>
+						</div>
+</div>
+
+					<% }) }%>
 			</div>
-					
-				
-			</div>
+			<script>
 
-			<% } %>
-		</div>
-		<script>
-			// Select all view more buttons
-		const viewMoreButtons = document.querySelectorAll('.view-more-btn');
-		
-		viewMoreButtons.forEach(button => {
-			button.addEventListener('click', function () {
-				// Get the parent container of the clicked button
-				const container = this.parentElement;
-		
-				// Toggle the expanded class on the parent container
-				container.classList.toggle('expanded');
-		
-				// Change button text based on the content state
-				if (container.classList.contains('expanded')) {
-					this.textContent = 'View Less';
-				} else {
-					this.textContent = 'View More';
-				}
-			});
-		});
-		
-		</script>   
-	</body>
+				const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+
+				viewMoreButtons.forEach(button => {
+					button.addEventListener('click', function () {
+
+						const container = this.parentElement;
+
+
+						container.classList.toggle('expanded');
+
+
+						if (container.classList.contains('expanded')) {
+							this.textContent = 'View Less';
+						} else {
+							this.textContent = 'View More';
+						}
+					});
+				});
+
+			</script>
+</body>
+
 </html>
